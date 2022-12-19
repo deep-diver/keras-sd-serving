@@ -1,4 +1,4 @@
-# Various ways of Serving Stable Diffusion 
+# Various ways of serving Stable Diffusion 
 
 This repository shows a various ways to deploy Stable Diffusion. Currently, we are interested in the Stable Diffusion implementation from `keras-cv`. 
 
