@@ -1,6 +1,8 @@
 # Various ways of serving Stable Diffusion 
 
-This repository shows a various ways to deploy Stable Diffusion. Currently, we are interested in the Stable Diffusion implementation from `keras-cv`. 
+This repository shows a various ways to deploy Stable Diffusion. Currently, we are interested in the Stable Diffusion implementation from `keras-cv`. The codes inside every notebooks are written based on `keras-cv == 0.3.4`.
+
+> NOTE: `keras-cv >= 0.3.5` is released, but it was not registered in [PyPI](https://pypi.org/project/keras-cv/) at the time of creating this repository. When it is distributed to PyPI, the notebooks will be updated accordingly.
 
 | Title      | Description | Image         | Notebook
 | :---:       |    :----   |    :----:     |       :-: |
