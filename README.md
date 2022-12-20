@@ -16,7 +16,7 @@ This method shows how to create a [custom handler](https://huggingface.co/docs/i
 <p>
 
 <p align="center">
-<img src="https://i.ibb.co/0Kpnn8g/2022-12-19-2-57-28.png" width="50%"/>
+<img src="https://i.ibb.co/0Kpnn8g/2022-12-19-2-57-28.png" width="70%"/>
 </p>
 
 </p>
@@ -34,7 +34,7 @@ This method shows how to create three [custom handler](https://huggingface.co/do
 <p>
 
 <p align="center">
-<img src="https://i.ibb.co/1dCGfm9/2022-12-19-3-27-14.png" width="50%"/>
+<img src="https://i.ibb.co/1dCGfm9/2022-12-19-3-27-14.png" width="70%"/>
 </p>
 
 </p>
@@ -52,7 +52,7 @@ This method shows how to generate images with a given text prompt by interacting
 <p>
 
 <p align="center">
-<img src="https://i.ibb.co/f2NHXYh/2022-12-19-3-27-10.png" width="50%"/>
+<img src="https://i.ibb.co/f2NHXYh/2022-12-19-3-27-10.png" width="70%"/>
 </p>
 
 </p>
@@ -70,7 +70,7 @@ This method shows how to inpaint a given image with a given text prompt by inter
 <p>
 
 <p align="center">
-<img src="https://i.ibb.co/fv30h2M/2022-12-20-3-17-57.png" width="50%"/>
+<img src="https://i.ibb.co/fv30h2M/2022-12-20-3-17-57.png" width="70%"/>
 </p>
 
 </p>
