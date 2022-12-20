@@ -28,7 +28,7 @@ This method shows how to create a [custom handler](https://huggingface.co/docs/i
   <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
 </a>
 
-This is written based on the **Stable Diffusion with Three Endpoints** notebook. This notebook shows how to deploy Diffusion Model into Hugging Face Endpoint while having Encoder/Decoder in a local environment. So, you will see how to separate each parts into different environment.
+This method shows how to create three [custom handler](https://huggingface.co/docs/inference-endpoints/guides/custom_handler)s of Hugging Face 🤗 Endpoint. As a preliminary work, [this notebook](https://github.com/deep-diver/keras-sd-serving/blob/main/model_sepration_without_endpoint.ipynb) was written first to demonstrate how to split three parts of Stable Diffusion into separate modules. In this example, you will see how to interact with three different endpoints to generate images with a given text prompt.
 
 <details><summary>details</summary>
 <p>
@@ -46,7 +46,7 @@ This is written based on the **Stable Diffusion with Three Endpoints** notebook.
   <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
 </a>
 
-This is written based on the Stable Diffusion with Three Endpoints notebook. This notebook shows how to deploy Diffusion Model into Hugging Face Endpoint while having Encoder/Decoder in a local environment. So, you will see how to separate each parts into different environment.	
+This method shows how to generate images with a given text prompt by interacting with three parts of Stable Diffusion. There is one significat difference comparing to **2. Three Endpoints (w/ 🤗 Endpoint)**. In this scenario, diffusion model is deployed on the Hugging Face Endpoint while keeping other models in local environment. It basically shows the flexibility of organizing Stable Diffusion in various situations (i.e. `text encoder`: local, `diffusion model`/`decoder`: Cloud, etc.,).
 
 <details><summary>details</summary>
 <p>
@@ -64,7 +64,7 @@ This is written based on the Stable Diffusion with Three Endpoints notebook. Thi
   <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
 </a>
 
-This is written based on the **Inpainting with Custom Handler** notebook. This notebook shows how to deploy Diffusion Model(inpainting task) into Hugging Face Endpoint while keeping other parts remained as is to demonstrate the flexibility.
+This method shows how to inpaint a given image with a given text prompt by interacting with three parts of Stable Diffusion. The architecture is bacisally same to **3. One Endpoint with Two APIs on local for txt2img (w/ 🤗 Endpoint)**. However, it significantly demonstrate the flexibility or replacing **only** `diffusion model` with other specialized one. `text encoder` and `decoder` remains the same as is while the basic `diffusion model` for txt2img is only replaced with specialied one for inpainting task.
 
 <details><summary>details</summary>
 <p>
