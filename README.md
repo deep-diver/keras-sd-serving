@@ -75,3 +75,5 @@ This method shows how to inpaint a given image with a given text prompt by inter
 
 </p>
 </details>
+
+## 5. Three Endpoints (w/ TF Serving) - WIP  
