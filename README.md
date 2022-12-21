@@ -82,4 +82,4 @@ This method shows how to wrap `encoder`, `diffusion model`, and `decoder` in sep
 
 ## Timing Tests
 
-![](https://i.ibb.co/gDgN6qN/download.png)
+![](https://i.ibb.co/PQX9xt5/download-1.png)
