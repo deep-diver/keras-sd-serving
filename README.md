@@ -79,3 +79,7 @@ This method shows how to inpaint a given image with a given text prompt by inter
 ## 5. Three Endpoints (w/ TF Serving) - WIP
 
 This method shows how to wrap `encoder`, `diffusion model`, and `decoder` in separate [TF Serving](https://github.com/tensorflow/serving). TF Serving is a specialized ML deployment framework, so there are many benefits you could get out of the box such as batch prediction. Also, each part should be saved as `SavedModel` format, so this method will be a stepping stone to deploy each parts into different deployment targets such as Mobile, Web, and more. 
+
+## Timing Tests
+
+![](https://i.ibb.co/gDgN6qN/download.png)
