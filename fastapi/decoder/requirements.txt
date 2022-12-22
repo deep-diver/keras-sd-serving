@@ -1,3 +1,7 @@
+fastapi
+uvicorn[standard]
 keras-cv==0.3.4
 tensorflow==2.11
 tensorflow_datasets
+numpy
+pydantic
