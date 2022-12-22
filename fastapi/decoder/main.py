@@ -25,7 +25,7 @@ def load_modules():
 
 @app.post("/decode")
 async def decode(
-	latent: str = None, 
+	latent: str = None,
 	batch_size: int = None):
 
 	if latent is None:

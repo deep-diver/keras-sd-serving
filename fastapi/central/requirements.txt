@@ -1,3 +1,5 @@
 fastapi
 uvicorn[standard]
 pydantic
+aiohttp
+requests
