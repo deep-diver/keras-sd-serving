@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: fastapi-server-decoder
+  name: fastapi-server-decoder
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fastapi-server-decoder
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: fastapi-server-decoder
+    spec:
+      containers:
+      - image: gcr.io/gcp-ml-172005/sd-fastapi-decoder:latest
+        name: fastapi-k8s-decoder
+        ports:
+        - containerPort: 80
+        resources:
+          limits:
+            nvidia.com/gpu: 1

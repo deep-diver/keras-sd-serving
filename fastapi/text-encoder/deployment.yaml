@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: fastapi-server-text-encoder
+  name: fastapi-server-text-encoder
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fastapi-server-text-encoder
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: fastapi-server-text-encoder
+    spec:
+      containers:
+      - image: gcr.io/gcp-ml-172005/sd-fastapi-text-encoder:latest
+        name: fastapi-k8s-text-encoder
+        ports:
+        - containerPort: 80
