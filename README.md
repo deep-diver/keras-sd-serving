@@ -6,7 +6,7 @@ This repository shows a various ways to deploy Stable Diffusion. Currently, we a
 
 ## 1. All in One Endpoint (w/ 🤗 Endpoint) 
 
-<a target="_blank" href="https://colab.research.google.com/github/deep-diver/keras-sd-serving/blob/main/hf_single_endpoint.ipynb">
+<a target="_blank" href="https://colab.research.google.com/github/deep-diver/keras-sd-serving/blob/main/hfe_all_in_one.ipynb">
   <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
 </a>
 
@@ -24,7 +24,7 @@ This method shows how to create a [custom handler](https://huggingface.co/docs/i
 
 ## 2. Three Endpoints (w/ 🤗 Endpoint) 
 
-<a target="_blank" href="https://colab.research.google.com/github/deep-diver/keras-sd-serving/blob/main/hf_multiple_endpoints.ipynb">
+<a target="_blank" href="https://colab.research.google.com/github/deep-diver/keras-sd-serving/blob/main/hfe_three_endpoints.ipynb">
   <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
 </a>
 
@@ -42,7 +42,7 @@ This method shows how to create three [custom handler](https://huggingface.co/do
 
 ## 3. One Endpoint with Two APIs on local for txt2img (w/ 🤗 Endpoint) 
 
-<a target="_blank" href="https://colab.research.google.com/github/deep-diver/keras-sd-serving/blob/main/hf_endpoint_dm_while_local_ed.ipynb">
+<a target="_blank" href="https://colab.research.google.com/github/deep-diver/keras-sd-serving/blob/main/hfe_two_endpoints_one_local_diffusion.ipynb">
   <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
 </a>
 
@@ -60,7 +60,7 @@ This method shows how to generate images with a given text prompt by interacting
 
 ## 4. One Endpoint with Two APIs on local for inpainting (w/ 🤗 Endpoint) 
 
-<a target="_blank" href="https://colab.research.google.com/github/deep-diver/keras-sd-serving/blob/main/hf_endpoint_dm_while_local_ed_inpaint.ipynb">
+<a target="_blank" href="https://colab.research.google.com/github/deep-diver/keras-sd-serving/blob/main/hfe_two_endpoints_one_local_inpainting.ipynb">
   <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
 </a>
 
@@ -76,7 +76,11 @@ This method shows how to inpaint a given image with a given text prompt by inter
 </p>
 </details>
 
-## 5. Three Endpoints (w/ TF Serving) - WIP
+## 5. Three Endpoints (w/ TF Serving)
+
+<a target="_blank" href="https://colab.research.google.com/github/deep-diver/keras-sd-serving/blob/main/tfs_three_endpoints.ipynb">
+  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
+</a>
 
 This method shows how to wrap `encoder`, `diffusion model`, and `decoder` in separate [TF Serving](https://github.com/tensorflow/serving). TF Serving is a specialized ML deployment framework, so there are many benefits you could get out of the box such as batch prediction. Also, each part should be saved as `SavedModel` format, so this method will be a stepping stone to deploy each parts into different deployment targets such as Mobile, Web, and more. 
 
