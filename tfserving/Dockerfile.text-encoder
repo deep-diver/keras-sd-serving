@@ -1,0 +1,11 @@
+FROM tensorflow/serving
+
+RUN apt-get update
+RUN apt-get upgrade -y
+RUN apt-get install git -y
+
+RUN git clone https://huggingface.co/keras-sd/tfs-text-encoder
+RUN rm tfs-text-encoder/README.md
+
+RUN mkdir -p /models/text-encoder/1
+COPY tfs-text-encoder/ /models/text-encoder/1/ 
