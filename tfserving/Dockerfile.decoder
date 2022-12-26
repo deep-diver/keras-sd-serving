@@ -9,7 +9,7 @@ RUN apt-get install git-lfs
 RUN git lfs install
 
 RUN git clone https://huggingface.co/keras-sd/tfs-decoder
-RUN rm tfs-diffusion-model/README.md
+RUN rm tfs-decoder/README.md
 
 RUN mkdir -p /models/decoder/1
 RUN cp -r tfs-decoder/* /models/decoder/1/ 
