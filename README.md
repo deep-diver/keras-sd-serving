@@ -32,46 +32,30 @@ This method shows how to deploy Stable Diffusion in three separate Endpoints. As
   - wrapping `encoder`, `diffusion model`, and `decoder` and some glue codes in separate [SavedModel](https://www.tensorflow.org/guide/saved_model)s. With them, we can not only deploy each models on cloud with TF Serving but also embed in web and mobild applications with [TFJS](https://github.com/tensorflow/tfjs) and [TFLite](https://www.tensorflow.org/lite). We will explore the embedded use cases later phase of this project.
 
 
-## 3. One Endpoint with Two APIs on local for txt2img (w/ 🤗 Endpoint) 
+## 3. One Endpoint with Two local APIs (w/ 🤗 Endpoint) 
 
-<a target="_blank" href="https://colab.research.google.com/github/deep-diver/keras-sd-serving/blob/main/hfe_two_endpoints_one_local_diffusion.ipynb">
-  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
-</a>
+With the separation of Stable Diffusion, we could organize each parts in any environments. This is powerful especially if we want to deploy specialized `diffusion model`s such as `inpainting` and `finetuned diffusion model`. In this case, we only need to replace the currently deployed `diffusion model` or just deploy a new `diffusion model` besides while keeping the other two(`text-encoder` and `decoder`) as is.
 
-This method shows how to generate images with a given text prompt by interacting with three parts of Stable Diffusion. There is one significat difference comparing to **2. Three Endpoints (w/ 🤗 Endpoint)**. In this scenario, diffusion model is deployed on the Hugging Face Endpoint while keeping other models in local environment. It basically shows the flexibility of organizing Stable Diffusion in various situations (i.e. `text encoder`: local, `diffusion model`/`decoder`: Cloud, etc.,).
-
-<details><summary>details</summary>
-<p>
-
-<p align="center">
-<img src="https://i.ibb.co/f2NHXYh/2022-12-19-3-27-10.png" width="70%"/>
-</p>
-
-</p>
-</details>
-
-## 4. One Endpoint with Two APIs on local for inpainting (w/ 🤗 Endpoint) 
-
-<a target="_blank" href="https://colab.research.google.com/github/deep-diver/keras-sd-serving/blob/main/hfe_two_endpoints_one_local_inpainting.ipynb">
-  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
-</a>
-
-This method shows how to inpaint a given image with a given text prompt by interacting with three parts of Stable Diffusion. The architecture is bacisally same to **3. One Endpoint with Two APIs on local for txt2img (w/ 🤗 Endpoint)**. However, it significantly demonstrate the flexibility or replacing **only** `diffusion model` with other specialized one. `text encoder` and `decoder` remains the same as is while the basic `diffusion model` for txt2img is only replaced with specialied one for inpainting task.
-
-<details><summary>details</summary>
-<p>
+Also, it is worth noting that we could run `text-encoder` and `decoder` parts in local(Python clients or web/mobile with TF Serving) while having `diffusion model` on cloud. In this repository, we currently show an example using Hugging Face 🤗 Endpoint.
 
 <p align="center">
 <img src="https://i.ibb.co/fv30h2M/2022-12-20-3-17-57.png" width="70%"/>
 </p>
 
-</p>
-</details>
+- **Original txt2img generation**: [[Colab](https://colab.research.google.com/github/deep-diver/keras-sd-serving/blob/main/notebooks/hfe_two_endpoints_one_local_diffusion.ipynb)]
+
+- **Original inpainting**: [[Colab](https://colab.research.google.com/github/deep-diver/keras-sd-serving/blob/main/hfe_two_endpoints_one_local_inpainting.ipynb)]
 
 ## Timing Tests
+
+<details><summary>details</summary>
+<p>
 
 ### Sequential
 
 The figure below shows how long each scenario took from text encoding to diffusion to decoding. It assumes each request(`batch_size=4`) is handled sequentially with a single server running on Hugging Face Endpoint for each endpoint. **all-in-one endpoint** deployed the Stable Diffusion on A10 equipped server while **separate endpoints** deployed text encoder on 2 vCPU + 4GB RAM, diffusion model on A10 equipped server, and decoder on T4 equipped server. Finally, **one endpoint, two local** only deployed difusion model on A10 equipped server while keeping the other two on Colab environment (w/ T4). Please take a look how these are measured from [this notebook](https://github.com/deep-diver/keras-sd-serving/blob/main/timings_sequential.ipynb)
 
 ![](https://i.ibb.co/PQX9xt5/download-1.png)
+
+</p>
+</details>
