@@ -1,0 +1,17 @@
+FROM tensorflow/serving:latest-gpu
+
+RUN apt-get update
+RUN apt-get upgrade -y
+RUN apt-get install git -y
+
+RUN curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | bash
+RUN apt-get install git-lfs
+RUN git lfs install
+
+RUN git clone https://huggingface.co/keras-sd/tfs-decoder
+RUN rm tfs-diffusion-model/README.md
+
+RUN mkdir -p /models/decoder/1
+RUN cp -r tfs-decoder/* /models/decoder/1/ 
+
+ENV MODEL_NAME=decoder
