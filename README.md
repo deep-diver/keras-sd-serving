@@ -24,9 +24,9 @@ This method shows how to deploy Stable Diffusion in three separate Endpoints. As
 <img src="https://i.ibb.co/1dCGfm9/2022-12-19-3-27-14.png" width="70%"/>
 </p>
 
-- **Hugging Face Endpoint**: [[Colab](https://colab.research.google.com/github/deep-diver/keras-sd-serving/blob/main/hfe_three_endpoints.ipynb) | [Standalone(Text Encoder)](https://github.com/deep-diver/keras-sd-serving/tree/main/hf_custom_handlers/text-encoder) | [Standalone(Diffusion Model)](https://github.com/deep-diver/keras-sd-serving/tree/main/hf_custom_handlers/basic-diffusion) | [Standalone(Decoder)](https://github.com/deep-diver/keras-sd-serving/tree/main/hf_custom_handlers/decoder)]
+- **Hugging Face Endpoint**: [[Colab](https://colab.research.google.com/github/deep-diver/keras-sd-serving/blob/main/hfe_three_endpoints.ipynb) | [Text Encoder](https://github.com/deep-diver/keras-sd-serving/tree/main/hf_custom_handlers/text-encoder) | [Diffusion Model](https://github.com/deep-diver/keras-sd-serving/tree/main/hf_custom_handlers/basic-diffusion) | [Decoder](https://github.com/deep-diver/keras-sd-serving/tree/main/hf_custom_handlers/decoder)]
 
-- **FastAPI Endpoint**: [[Standalone(Central)](https://github.com/deep-diver/keras-sd-serving/tree/main/fastapi/central) | [Standalone(Text Encoder)](https://github.com/deep-diver/keras-sd-serving/tree/main/fastapi/text-encoder) | [Standalone(Stable Diffusion)](https://github.com/deep-diver/keras-sd-serving/tree/main/fastapi/basic-diffusion) | [Standalone(Decoder)](https://github.com/deep-diver/keras-sd-serving/tree/main/fastapi/decoder)]
+- **FastAPI Endpoint**: [[Central](https://github.com/deep-diver/keras-sd-serving/tree/main/fastapi/central) | [Text Encoder](https://github.com/deep-diver/keras-sd-serving/tree/main/fastapi/text-encoder) | [Stable Diffusion](https://github.com/deep-diver/keras-sd-serving/tree/main/fastapi/basic-diffusion) | [Decoder](https://github.com/deep-diver/keras-sd-serving/tree/main/fastapi/decoder)]
 
 ## 3. One Endpoint with Two APIs on local for txt2img (w/ 🤗 Endpoint) 
 
