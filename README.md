@@ -24,9 +24,11 @@ This method shows how to deploy Stable Diffusion in three separate Endpoints. As
 <img src="https://i.ibb.co/jfnSbML/2022-12-26-10-23-45.png" width="70%"/>
 </p>
 
-- **Hugging Face Endpoint**: [[Colab](https://colab.research.google.com/github/deep-diver/keras-sd-serving/blob/main/hfe_three_endpoints.ipynb) | [Text Encoder](https://github.com/deep-diver/keras-sd-serving/tree/main/hf_custom_handlers/text-encoder) | [Diffusion Model](https://github.com/deep-diver/keras-sd-serving/tree/main/hf_custom_handlers/basic-diffusion) | [Decoder](https://github.com/deep-diver/keras-sd-serving/tree/main/hf_custom_handlers/decoder)]
+- **Hugging Face Endpoint**: [[Colab](https://colab.research.google.com/github/deep-diver/keras-sd-serving/blob/main/notebooks/hfe_three_endpoints.ipynb) | [Text Encoder](https://github.com/deep-diver/keras-sd-serving/tree/main/hf_custom_handlers/text-encoder) | [Diffusion Model](https://github.com/deep-diver/keras-sd-serving/tree/main/hf_custom_handlers/basic-diffusion) | [Decoder](https://github.com/deep-diver/keras-sd-serving/tree/main/hf_custom_handlers/decoder)]
 
-- **FastAPI Endpoint**: [[Central](https://github.com/deep-diver/keras-sd-serving/tree/main/fastapi/central) | [Text Encoder](https://github.com/deep-diver/keras-sd-serving/tree/main/fastapi/text-encoder) | [Stable Diffusion](https://github.com/deep-diver/keras-sd-serving/tree/main/fastapi/basic-diffusion) | [Decoder](https://github.com/deep-diver/keras-sd-serving/tree/main/fastapi/decoder)]
+- **FastAPI Endpoint**: [[Central](https://github.com/deep-diver/keras-sd-serving/tree/main/fastapi/central) | [Text Encoder](https://github.com/deep-diver/keras-sd-serving/tree/main/fastapi/text-encoder) | [Diffusion Model](https://github.com/deep-diver/keras-sd-serving/tree/main/fastapi/basic-diffusion) | [Decoder](https://github.com/deep-diver/keras-sd-serving/tree/main/fastapi/decoder)]
+
+- **TF Serving Endpoint**: [[Colab](https://colab.research.google.com/github/deep-diver/keras-sd-serving/blob/main/notebooks/tfs_three_endpoints.ipynb) | [Text Encoder](https://huggingface.co/keras-sd/tfs-text-encoder/tree/main) | [Diffusion Model](https://huggingface.co/keras-sd/tfs-diffusion-model/tree/main) | [Decoder](https://huggingface.co/keras-sd/tfs-decoder/tree/main)]
 
 ## 3. One Endpoint with Two APIs on local for txt2img (w/ 🤗 Endpoint) 
 
