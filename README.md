@@ -15,6 +15,7 @@ This method shows how to deploy Stable Diffusion as a whole in a single endpoint
 - **Hugging Face 🤗 Endpoint**: In order to deploy something in Hugging Face Endpoint, we need to create a [custom handler](https://huggingface.co/docs/inference-endpoints/guides/custom_handler). Hugging Face Endpoint let us easily deploy any machine learning models with pre/post processing logics in a custom handler [[Colab](https://colab.research.google.com/github/deep-diver/keras-sd-serving/blob/main/notebooks/hfe_all_in_one.ipynb) | [Standalone Codebase](https://github.com/deep-diver/keras-sd-serving/tree/main/hf_custom_handlers/all-in-one)]
 
 - **FastAPI Endpoint**: [[Colab](https://colab.research.google.com/github/deep-diver/keras-sd-serving/blob/main/notebooks/fastapi_all_in_one.ipynb) | [Standalone](https://github.com/deep-diver/keras-sd-serving/blob/main/fastapi/basic-diffusion/utils.py)]
+  - Docker Image: `gcr.io/gcp-ml-172005/sd-fastapi-allinone`
 
 ## 2. Three Endpoints 
 
