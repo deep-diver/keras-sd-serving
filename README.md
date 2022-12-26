@@ -39,7 +39,7 @@ With the separation of Stable Diffusion, we could organize each parts in any env
 Also, it is worth noting that we could run `text-encoder` and `decoder` parts in local(Python clients or web/mobile with TF Serving) while having `diffusion model` on cloud. In this repository, we currently show an example using Hugging Face 🤗 Endpoint.
 
 <p align="center">
-<img src="https://i.ibb.co/fv30h2M/2022-12-20-3-17-57.png" width="70%"/>
+<img src="https://i.ibb.co/9nkft0w/2022-12-26-2-35-00.png" width="70%"/>
 </p>
 
 - **Original txt2img generation**: [[Colab](https://colab.research.google.com/github/deep-diver/keras-sd-serving/blob/main/notebooks/hfe_two_endpoints_one_local_diffusion.ipynb)]
