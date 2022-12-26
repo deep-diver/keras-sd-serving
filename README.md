@@ -29,6 +29,8 @@ This method shows how to deploy Stable Diffusion in three separate Endpoints. As
 - **FastAPI Endpoint**: [[Central](https://github.com/deep-diver/keras-sd-serving/tree/main/fastapi/central) | [Text Encoder](https://github.com/deep-diver/keras-sd-serving/tree/main/fastapi/text-encoder) | [Diffusion Model](https://github.com/deep-diver/keras-sd-serving/tree/main/fastapi/basic-diffusion) | [Decoder](https://github.com/deep-diver/keras-sd-serving/tree/main/fastapi/decoder)]
 
 - **TF Serving Endpoint**: [[Colab](https://colab.research.google.com/github/deep-diver/keras-sd-serving/blob/main/notebooks/tfs_three_endpoints.ipynb) | [Text Encoder](https://huggingface.co/keras-sd/tfs-text-encoder/tree/main) | [Diffusion Model](https://huggingface.co/keras-sd/tfs-diffusion-model/tree/main) | [Decoder](https://huggingface.co/keras-sd/tfs-decoder/tree/main)]
+  - wrapping `encoder`, `diffusion model`, and `decoder` and some glue codes in separate [SavedModel](https://www.tensorflow.org/guide/saved_model)s. With them, we can not only deploy each models on cloud with TF Serving but also embed in web and mobild applications with [TFJS](https://github.com/tensorflow/tfjs) and [TFLite](https://www.tensorflow.org/lite). We will explore the embedded use cases later phase of this project.
+
 
 ## 3. One Endpoint with Two APIs on local for txt2img (w/ 🤗 Endpoint) 
 
@@ -65,14 +67,6 @@ This method shows how to inpaint a given image with a given text prompt by inter
 
 </p>
 </details>
-
-## 5. Three Endpoints (w/ TF Serving)
-
-<a target="_blank" href="https://colab.research.google.com/github/deep-diver/keras-sd-serving/blob/main/tfs_three_endpoints.ipynb">
-  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
-</a>
-
-This method shows how to wrap `encoder`, `diffusion model`, and `decoder` in separate [TF Serving](https://github.com/tensorflow/serving). TF Serving is a specialized ML deployment framework, so there are many benefits you could get out of the box such as batch prediction. Also, each part should be saved as `SavedModel` format, so this method will be a stepping stone to deploy each parts into different deployment targets such as Mobile, Web, and more. 
 
 ## Timing Tests
 
