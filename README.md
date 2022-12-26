@@ -1,44 +1,32 @@
 # Various ways of serving Stable Diffusion 
 
-This repository shows a various ways to deploy Stable Diffusion. Currently, we are interested in the Stable Diffusion implementation from `keras-cv`. The codes inside every notebooks are written based on `keras-cv == 0.3.4`.
+This repository shows a various ways to deploy Stable Diffusion. Currently, we are interested in the Stable Diffusion implementation from `keras-cv`, and the target platforms/frameworks that we aim includes [TF Serving](https://github.com/tensorflow/serving), [Hugging Face Endpoint](https://huggingface.co/inference-endpoints), and [FastAPI](https://fastapi.tiangolo.com/). 
 
-> NOTE: `keras-cv >= 0.3.5` is released, but it was not registered in [PyPI](https://pypi.org/project/keras-cv/) at the time of creating this repository. When it is distributed to PyPI, the notebooks will be updated accordingly.
+> NOTE: The codes inside every notebooks except TF Serving are written based on `keras-cv == 0.3.4`. `keras-cv >= 0.3.5` is released, but it was not registered in [PyPI](https://pypi.org/project/keras-cv/) at the time of creating this repository. When it is distributed to PyPI, the notebooks will be updated accordingly.
 
-## 1. All in One Endpoint (w/ 🤗 Endpoint) 
+## 1. All in One Endpoint
 
-<a target="_blank" href="https://colab.research.google.com/github/deep-diver/keras-sd-serving/blob/main/hfe_all_in_one.ipynb">
-  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
-</a>
-
-This method shows how to create a [custom handler](https://huggingface.co/docs/inference-endpoints/guides/custom_handler) of Hugging Face 🤗 Endpoint. Stable Diffusion consists of three models(`encoder`, `diffusion model`, `decoder`) and some glue codes to handle the inputs and outputs of each models. In this scenario, everything is packaged into a single Endpoint. Hugging Face 🤗 Endpoint let us easily deploy any machine learning models with pre/post processing logics in custom handler.
-
-<details><summary>details</summary>
-<p>
+This method shows how to deploy Stable Diffusion as a whole in a single endpoint. Stable Diffusion consists of three models(`encoder`, `diffusion model`, `decoder`) and some glue codes to handle the inputs and outputs of each models. In this scenario, everything is packaged into a single Endpoint.
 
 <p align="center">
 <img src="https://i.ibb.co/0Kpnn8g/2022-12-19-2-57-28.png" width="70%"/>
 </p>
 
-</p>
-</details>
+- **Hugging Face 🤗 Endpoint**: In order to deploy something in Hugging Face Endpoint, we need to create a [custom handler](https://huggingface.co/docs/inference-endpoints/guides/custom_handler). Hugging Face Endpoint let us easily deploy any machine learning models with pre/post processing logics in a custom handler [[Colab](https://colab.research.google.com/github/deep-diver/keras-sd-serving/blob/main/notebooks/hfe_all_in_one.ipynb) | [Standalone Codebase](https://github.com/deep-diver/keras-sd-serving/tree/main/hf_custom_handlers/all-in-one)]
 
-## 2. Three Endpoints (w/ 🤗 Endpoint) 
+- **FastAPI Endpoint**: [[Colab](https://colab.research.google.com/github/deep-diver/keras-sd-serving/blob/main/notebooks/fastapi_all_in_one.ipynb) | [Standalone](https://github.com/deep-diver/keras-sd-serving/blob/main/fastapi/basic-diffusion/utils.py)]
 
-<a target="_blank" href="https://colab.research.google.com/github/deep-diver/keras-sd-serving/blob/main/hfe_three_endpoints.ipynb">
-  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
-</a>
+## 2. Three Endpoints 
 
-This method shows how to create three [custom handler](https://huggingface.co/docs/inference-endpoints/guides/custom_handler)s of Hugging Face 🤗 Endpoint. As a preliminary work, [this notebook](https://github.com/deep-diver/keras-sd-serving/blob/main/model_sepration_without_endpoint.ipynb) was written first to demonstrate how to split three parts of Stable Diffusion into separate modules. In this example, you will see how to interact with three different endpoints to generate images with a given text prompt.
-
-<details><summary>details</summary>
-<p>
+This method shows how to deploy Stable Diffusion in three separate Endpoints. As a preliminary work, [this notebook](https://github.com/deep-diver/keras-sd-serving/blob/main/model_sepration_without_endpoint.ipynb) was written to demonstrate how to split three parts of Stable Diffusion into three separate modules. In this example, you will see how to interact with three different endpoints to generate images with a given text prompt.
 
 <p align="center">
 <img src="https://i.ibb.co/1dCGfm9/2022-12-19-3-27-14.png" width="70%"/>
 </p>
 
-</p>
-</details>
+- **Hugging Face Endpoint**: [[Colab](https://colab.research.google.com/github/deep-diver/keras-sd-serving/blob/main/hfe_three_endpoints.ipynb) | [Standalone(Text Encoder)](https://github.com/deep-diver/keras-sd-serving/tree/main/hf_custom_handlers/text-encoder) | [Standalone(Diffusion Model)](https://github.com/deep-diver/keras-sd-serving/tree/main/hf_custom_handlers/basic-diffusion) | [Standalone(Decoder)](https://github.com/deep-diver/keras-sd-serving/tree/main/hf_custom_handlers/decoder)]
+
+- **FastAPI Endpoint**: [[Standalone(Central)](https://github.com/deep-diver/keras-sd-serving/tree/main/fastapi/central) | [Standalone(Text Encoder)](https://github.com/deep-diver/keras-sd-serving/tree/main/fastapi/text-encoder) | [Standalone(Stable Diffusion)](https://github.com/deep-diver/keras-sd-serving/tree/main/fastapi/basic-diffusion) | [Standalone(Decoder)](https://github.com/deep-diver/keras-sd-serving/tree/main/fastapi/decoder)]
 
 ## 3. One Endpoint with Two APIs on local for txt2img (w/ 🤗 Endpoint) 
 
