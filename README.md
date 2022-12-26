@@ -15,7 +15,7 @@ This method shows how to deploy Stable Diffusion as a whole in a single endpoint
 - **Hugging Face 🤗 Endpoint**: In order to deploy something in Hugging Face Endpoint, we need to create a [custom handler](https://huggingface.co/docs/inference-endpoints/guides/custom_handler). Hugging Face Endpoint let us easily deploy any machine learning models with pre/post processing logics in a custom handler [[Colab](https://colab.research.google.com/github/deep-diver/keras-sd-serving/blob/main/notebooks/hfe_all_in_one.ipynb) | [Standalone Codebase](https://github.com/deep-diver/keras-sd-serving/tree/main/hf_custom_handlers/all-in-one)]
 
 - **FastAPI Endpoint**: [[Colab](https://colab.research.google.com/github/deep-diver/keras-sd-serving/blob/main/notebooks/fastapi_all_in_one.ipynb) | [Standalone](https://github.com/deep-diver/keras-sd-serving/blob/main/fastapi/basic-diffusion/utils.py)]
-  - Docker Image: `gcr.io/gcp-ml-172005/sd-fastapi-allinone`
+  - Docker Image: `gcr.io/gcp-ml-172005/sd-fastapi-allinone:latest`
 
 ## 2. Three Endpoints 
 
@@ -28,6 +28,9 @@ This method shows how to deploy Stable Diffusion in three separate Endpoints. As
 - **Hugging Face Endpoint**: [[Colab](https://colab.research.google.com/github/deep-diver/keras-sd-serving/blob/main/notebooks/hfe_three_endpoints.ipynb) | [Text Encoder](https://github.com/deep-diver/keras-sd-serving/tree/main/hf_custom_handlers/text-encoder) | [Diffusion Model](https://github.com/deep-diver/keras-sd-serving/tree/main/hf_custom_handlers/basic-diffusion) | [Decoder](https://github.com/deep-diver/keras-sd-serving/tree/main/hf_custom_handlers/decoder)]
 
 - **FastAPI Endpoint**: [[Central](https://github.com/deep-diver/keras-sd-serving/tree/main/fastapi/central) | [Text Encoder](https://github.com/deep-diver/keras-sd-serving/tree/main/fastapi/text-encoder) | [Diffusion Model](https://github.com/deep-diver/keras-sd-serving/tree/main/fastapi/basic-diffusion) | [Decoder](https://github.com/deep-diver/keras-sd-serving/tree/main/fastapi/decoder)]
+  - Docker Image(text-encoder): `gcr.io/gcp-ml-172005/sd-fastapi-text-encoder:latest`
+  - Docker Image(diffusion-model): `gcr.io/gcp-ml-172005/sd-fastapi-diffusion-model:latest`
+  - Docker Image(decoder): `gcr.io/gcp-ml-172005/sd-fastapi-decoder:latest`
 
 - **TF Serving Endpoint**: [[Colab](https://colab.research.google.com/github/deep-diver/keras-sd-serving/blob/main/notebooks/tfs_three_endpoints.ipynb) | [Text Encoder](https://huggingface.co/keras-sd/tfs-text-encoder/tree/main) | [Diffusion Model](https://huggingface.co/keras-sd/tfs-diffusion-model/tree/main) | [Decoder](https://huggingface.co/keras-sd/tfs-decoder/tree/main)]
   - wrapping `encoder`, `diffusion model`, and `decoder` and some glue codes in separate [SavedModel](https://www.tensorflow.org/guide/saved_model)s. With them, we can not only deploy each models on cloud with TF Serving but also embed in web and mobild applications with [TFJS](https://github.com/tensorflow/tfjs) and [TFLite](https://www.tensorflow.org/lite). We will explore the embedded use cases later phase of this project.
