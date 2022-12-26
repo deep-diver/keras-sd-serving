@@ -12,15 +12,19 @@ gcloud container clusters create v100 \
   --zone us-central1-c
 ```
 
-### Dockerfile
+### Install NVIDIA GPU device drivers
+
+```
+$ kubectl apply -f https://raw.githubusercontent.com/GoogleCloudPlatform/container-engine-accelerators/master/nvidia-driver-installer/cos/daemonset-preloaded.yaml
+```
+
+### Dockerfile and deployment.yaml
 
 ```
 FROM tensorflow/tensorflow:latest-gpu
 
 ...
 ```
-
-### Deployment.yaml
 
 ```
 apiVersion: apps/v1
