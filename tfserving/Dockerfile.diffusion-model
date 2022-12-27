@@ -1,7 +1,6 @@
-FROM tensorflow/serving:latest-gpu
+FROM tensorflow/serving:nightly-gpu
 
 RUN apt-get update
-RUN apt-get upgrade -y
 RUN apt-get install git -y
 
 RUN curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | bash
@@ -15,3 +14,4 @@ RUN mkdir -p /models/diffusion-model/1
 RUN cp -r tfs-diffusion-model/* /models/diffusion-model/1/ 
 
 ENV MODEL_NAME=diffusion-model
+ENV TF_CPP_VMODULE=http_server=1
