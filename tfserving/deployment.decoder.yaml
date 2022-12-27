@@ -19,6 +19,7 @@ spec:
       - image: gcr.io/gcp-ml-172005/tfs-sd-decoder:latest
         name: tfs-k8s-decoder
         imagePullPolicy: Always
+        args: ["--rest_api_timeout_in_ms=1200000"]
         ports:
         - containerPort: 8500
           name: grpc

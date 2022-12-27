@@ -19,6 +19,7 @@ spec:
       - image: gcr.io/gcp-ml-172005/tfs-sd-diffusion-model:latest
         name: tfs-k8s-diffusion-model
         imagePullPolicy: Always
+        args: ["--rest_api_timeout_in_ms=1200000"]
         ports:
         - containerPort: 8500
           name: grpc
