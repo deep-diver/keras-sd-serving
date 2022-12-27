@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: tfs-server-diffusion-model
+  name: tfs-server-diffusion-model
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tfs-server-diffusion-model
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: tfs-server-diffusion-model
+    spec:
+      containers:
+      - image: gcr.io/gcp-ml-172005/tfs-sd-diffusion-model:latest
+        name: tfs-k8s-diffusion-model
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8500
+          name: grpc
+        - containerPort: 8501
+          name: restapi
+        resources:
+          limits:
+            nvidia.com/gpu: 1
