@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: tfs-server-decoder
+  name: tfs-server-decoder
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tfs-server-decoder
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: tfs-server-decoder
+    spec:
+      containers:
+      - image: gcr.io/gcp-ml-172005/tfs-sd-decoder:latest
+        name: tfs-k8s-decoder
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8500
+          name: grpc
+        - containerPort: 8501
+          name: restapi
+        resources:
+          limits:
+            nvidia.com/gpu: 1
