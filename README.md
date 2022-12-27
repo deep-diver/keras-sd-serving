@@ -66,3 +66,6 @@ The figure below shows how long each scenario took from text encoding to diffusi
 
 </p>
 </details>
+
+## Acknowledgements
+Thanks to the ML Developer Programs' team at Google for providing GCP credits.
