@@ -42,9 +42,11 @@ This method shows how to deploy Stable Diffusion in three separate Endpoints. As
 
 ## 3. One Endpoint with Two local APIs (w/ 🤗 Endpoint) 
 
-With the separation of Stable Diffusion, we could organize each parts in any environments. This is powerful especially if we want to deploy specialized `diffusion model`s such as `inpainting` and `finetuned diffusion model`. In this case, we only need to replace the currently deployed `diffusion model` or just deploy a new `diffusion model` besides while keeping the other two(`text-encoder` and `decoder`) as is.
+With the separation of Stable Diffusion, we could organize each parts in any environments. This is powerful especially if we want to deploy specialized `diffusion model`s such as `inpainting` and `finetuned diffusion model`. In this case, we only need to replace the currently deployed `diffusion model` or just deploy a new `diffusion model` besides while keeping the other two(`text encoder` and `decoder`) as is.
 
-Also, it is worth noting that we could run `text-encoder` and `decoder` parts in local(Python clients or web/mobile with TF Serving) while having `diffusion model` on cloud. In this repository, we currently show an example using Hugging Face 🤗 Endpoint.
+Also, it is worth noting that we could run `text encoder` and `decoder` parts in local(Python clients or web/mobile with TF Serving) while having `diffusion model` on cloud. In this repository, we currently show an example using Hugging Face 🤗 Endpoint. However, you could easily expand the posibilities.
+
+> NOTE: along with this project, we have developed one more project to fine-tune Keras based Stable Diffusion at [**Fine-tuning Stable Diffusion using Keras**](https://github.com/sayakpaul/stable-diffusion-keras-ft). We currently provide a fine-tuned model to Pokemon dataset. 
 
 <p align="center">
 <img src="https://github.com/deep-diver/keras-sd-serving/blob/main/assets/one-endpoint-two-local.png?raw=true" width="90%"/>
