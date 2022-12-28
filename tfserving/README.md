@@ -30,7 +30,7 @@ $ kubectl apply -f https://raw.githubusercontent.com/GoogleCloudPlatform/contain
 Lastly, you need to build a Docker image that is installed NVIDIA GPU drivers for Docker container. There is a general process to do this, but we have simply used Tensorflow official Docker image with GPU enabled.
 
 ```
-FROM tensorflow/serving:nightly-gp
+FROM tensorflow/serving:nightly-gpu
 
 ...
 ```
