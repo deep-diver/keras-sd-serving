@@ -37,3 +37,23 @@ def get_contexts(text_encoder, encoded_text, batch_size):
     )  
 
     return context, unconditional_context
+
+def instantiate_text_encoder(version: str):
+    if version == "1.4":
+        text_encoder_weights_fpath = keras.utils.get_file(
+            origin="https://huggingface.co/fchollet/stable-diffusion/resolve/main/kcv_encoder.h5",
+            file_hash="4789e63e07c0e54d6a34a29b45ce81ece27060c499a709d556c7755b42bb0dc4",
+        )
+        text_encoder = TextEncoder(MAX_PROMPT_LENGTH)
+        text_encoder.load_weights(text_encoder_weights_fpath)
+        return text_encoder
+    elif version == "2":
+        text_encoder_weights_fpath = keras.utils.get_file(
+            origin="https://huggingface.co/ianstenbit/keras-sd2.1/resolve/main/text_encoder_v2_1.h5",
+            file_hash="985002e68704e1c5c3549de332218e99c5b9b745db7171d5f31fcd9a6089f25b",
+        )
+        text_encoder = TextEncoderV2(MAX_PROMPT_LENGTH)
+        text_encoder.load_weights(text_encoder_weights_fpath)
+        return text_encoder
+    else:
+        return f"v{version} is not supported"

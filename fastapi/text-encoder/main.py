@@ -15,17 +15,16 @@ app = FastAPI()
 
 @app.on_event("startup")
 def load_modules():
+  version = os.getenv('SD_VERSION', "2")
+
   global tokenizer
   global text_encoder
 
   tokenizer = SimpleTokenizer()
-  text_encoder = TextEncoder(utils.MAX_PROMPT_LENGTH)
+  text_encoder = utils.instantiate_text_encoder(version)
 
-  text_encoder_weights_fpath = keras.utils.get_file(
-      origin="https://huggingface.co/fchollet/stable-diffusion/resolve/main/kcv_encoder.h5",
-      file_hash="4789e63e07c0e54d6a34a29b45ce81ece27060c499a709d556c7755b42bb0dc4",
-  )
-  text_encoder.load_weights(text_encoder_weights_fpath)
+  if isinstance(text_encoder, str):
+    sys.exit(text_encoder)
 
 @app.post("/text/encode")
 async def text_encode(
