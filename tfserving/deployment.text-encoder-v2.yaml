@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: tfs-server-text-encoder-v2
+  name: tfs-server-text-encoder-v2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tfs-server-text-encoder-v2
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: tfs-server-text-encoder-v2
+    spec:
+      containers:
+      - image: gcr.io/gcp-ml-172005/tfs-sd-text-encoder-v2:latest
+        name: tfs-k8s-text-encoder-v2
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8500
+          name: grpc
+        - containerPort: 8501
+          name: restapi
