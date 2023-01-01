@@ -2,8 +2,6 @@
 
 This repository shows a various ways to deploy Stable Diffusion. Currently, we are interested in the Stable Diffusion implementation from `keras-cv`, and the target platforms/frameworks that we aim includes [TF Serving](https://github.com/tensorflow/serving), [Hugging Face Endpoint](https://huggingface.co/inference-endpoints), and [FastAPI](https://fastapi.tiangolo.com/). 
 
-> NOTE: The codes inside every notebooks except TF Serving are written based on `keras-cv == 0.3.4`. `keras-cv >= 0.3.5` is released, but it was not registered in [PyPI](https://pypi.org/project/keras-cv/) at the time of creating this repository. When it is distributed to PyPI, the notebooks will be updated accordingly.
-
 ## 1. All in One Endpoint
 
 This method shows how to deploy Stable Diffusion as a whole in a single endpoint. Stable Diffusion consists of three models(`encoder`, `diffusion model`, `decoder`) and some glue codes to handle the inputs and outputs of each models. In this scenario, everything is packaged into a single Endpoint.
@@ -36,7 +34,9 @@ This method shows how to deploy Stable Diffusion in three separate Endpoints. As
   - SavedModel: [[Colab](https://colab.research.google.com/github/deep-diver/keras-sd-serving/blob/main/notebooks/tfs_saved_models.ipynb) | [Text Encoder](https://huggingface.co/keras-sd/tfs-text-encoder/tree/main) | [Diffusion Model](https://huggingface.co/keras-sd/tfs-diffusion-model/tree/main) | [Decoder](https://huggingface.co/keras-sd/tfs-decoder/tree/main)]
     - wrapping `encoder`, `diffusion model`, and `decoder` and some glue codes in separate [SavedModel](https://www.tensorflow.org/guide/saved_model)s. With them, we can not only deploy each models on cloud with TF Serving but also embed in web and mobild applications with [TFJS](https://github.com/tensorflow/tfjs) and [TFLite](https://www.tensorflow.org/lite). We will explore the embedded use cases later phase of this project.
   - Docker Image(text-encoder): `gcr.io/gcp-ml-172005/tfs-sd-text-encoder:latest`
+  - Docker Image(text-encoder-v2): `gcr.io/gcp-ml-172005/tfs-sd-text-encoder-v2:latest`
   - Docker Image(diffusion-model): `gcr.io/gcp-ml-172005/tfs-sd-diffusion-model:latest`
+  - Docker Image(diffusion-model-v2): `gcr.io/gcp-ml-172005/tfs-sd-diffusion-model-v2:latest`
   - Docker Image(decoder): `gcr.io/gcp-ml-172005/tfs-sd-decoder:latest`  
 
 
