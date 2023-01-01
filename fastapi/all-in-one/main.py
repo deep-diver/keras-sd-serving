@@ -25,8 +25,8 @@ def load_modules():
  global stable_diffusion
  stable_diffusion = _instantiate_stable_diffusion(version)
  
- if isinstance(self.sd, str):
-  sys.exit(self.sd)
+ if isinstance(stable_diffusion, str):
+  sys.exit(stable_diffusion)
  else:
   stable_diffusion.text_to_image("test prompt", batch_size=1)
   logging.warning(f"Stable Diffusion v{version} is fully loaded") 
