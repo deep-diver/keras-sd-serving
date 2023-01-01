@@ -1,3 +1,5 @@
+import os
+import sys
 import json
 import base64
 
@@ -10,21 +12,18 @@ from keras_cv.models.generative.stable_diffusion.diffusion_model import Diffusio
 
 import utils
 
+version = os.getenv('SD_VERSION', "2")
+
 app = FastAPI()
 
 @app.on_event("startup")
 def load_modules():
   global diffusion_model
 
-  diffusion_model = DiffusionModel(utils.img_height, 
-                                utils.img_width, 
-                                utils.MAX_PROMPT_LENGTH)
+  diffusion_model = instantiate_diffusion_model(version)
 
-  diffusion_model_weights_fpath = keras.utils.get_file(
-      origin="https://huggingface.co/fchollet/stable-diffusion/resolve/main/kcv_diffusion_model.h5",
-      file_hash="8799ff9763de13d7f30a683d653018e114ed24a6a819667da4f5ee10f9e805fe",
-  )
-  diffusion_model.load_weights(diffusion_model_weights_fpath)                                        
+  if isinstance(diffusion_model, str):
+    sys.exit(diffusion_model)
 
 @app.post("/diffusion")
 async def diffusion(
@@ -45,11 +44,17 @@ async def diffusion(
 
   context = base64.b64decode(context)
   context = np.frombuffer(context, dtype="float32")
-  context = np.reshape(context, (batch_size, 77, 768))
+  if version == "2":
+    context = np.reshape(context, (batch_size, 77, 1024))
+  else:
+    context = np.reshape(context, (batch_size, 77, 768))
 
   unconditional_context = base64.b64decode(u_context)
   unconditional_context = np.frombuffer(unconditional_context, dtype="float32")
-  unconditional_context = np.reshape(unconditional_context, (batch_size, 77, 768))
+  if version == "2":
+    unconditional_context = np.reshape(unconditional_context, (batch_size, 77, 1024))
+  else:
+    unconditional_context = np.reshape(unconditional_context, (batch_size, 77, 768))
 
   latent = utils.diffusion(context,
                 unconditional_context,
