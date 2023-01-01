@@ -1,16 +1,18 @@
 from typing import Dict, List, Any
 
+import sys
 import base64
 import math
 import numpy as np
 import tensorflow as tf
 from tensorflow import keras
 
-from keras_cv.models.generative.stable_diffusion.constants import _ALPHAS_CUMPROD
-from keras_cv.models.generative.stable_diffusion.diffusion_model import DiffusionModel
+from keras_cv.models.stable_diffusion.constants import _ALPHAS_CUMPROD
+from keras_cv.models.stable_diffusion.diffusion_model import DiffusionModel
+from keras_cv.models.stable_diffusion.diffusion_model import DiffusionModelV2
 
 class EndpointHandler():
-    def __init__(self, path=""):        
+    def __init__(self, path="", version="2"):        
         self.seed = None
 
         img_height = 512
@@ -19,12 +21,31 @@ class EndpointHandler():
         self.img_width = round(img_width / 128) * 128        
 
         self.MAX_PROMPT_LENGTH = 77
-        self.diffusion_model = DiffusionModel(self.img_height, self.img_width, self.MAX_PROMPT_LENGTH)
-        diffusion_model_weights_fpath = keras.utils.get_file(
-            origin="https://huggingface.co/fchollet/stable-diffusion/resolve/main/kcv_diffusion_model.h5",
-            file_hash="8799ff9763de13d7f30a683d653018e114ed24a6a819667da4f5ee10f9e805fe",
-        )
-        self.diffusion_model.load_weights(diffusion_model_weights_fpath)        
+
+        self.version = version
+        self.diffusion_model = self._instantiate_diffusion_model(version)
+        if isinstance(self.diffusion_model, str):
+          sys.exit(self.diffusion_model)
+
+    def _instantiate_diffusion_model(self, version: str):
+        if version == "1.4":
+            diffusion_model_weights_fpath = keras.utils.get_file(
+                origin="https://huggingface.co/fchollet/stable-diffusion/resolve/main/kcv_diffusion_model.h5",
+                file_hash="8799ff9763de13d7f30a683d653018e114ed24a6a819667da4f5ee10f9e805fe",
+            )
+            diffusion_model = DiffusionModel(self.img_height, self.img_width, self.MAX_PROMPT_LENGTH)
+            diffusion_model.load_weights(diffusion_model_weights_fpath)
+            return diffusion_model
+        elif version == "2":
+            diffusion_model_weights_fpath = keras.utils.get_file(
+                origin="https://huggingface.co/ianstenbit/keras-sd2.1/resolve/main/diffusion_model_v2_1.h5",
+                file_hash="c31730e91111f98fe0e2dbde4475d381b5287ebb9672b1821796146a25c5132d",
+            )
+            diffusion_model = DiffusionModelV2(self.img_height, self.img_width, self.MAX_PROMPT_LENGTH)
+            diffusion_model.load_weights(diffusion_model_weights_fpath)
+            return diffusion_model
+        else:
+            return f"v{version} is not supported"
 
     def _get_initial_diffusion_noise(self, batch_size, seed):
         if seed is not None:
@@ -60,11 +81,17 @@ class EndpointHandler():
 
         context = base64.b64decode(contexts[0])
         context = np.frombuffer(context, dtype="float32")
-        context = np.reshape(context, (batch_size, 77, 768))
+        if self.version == "1.4":
+          context = np.reshape(context, (batch_size, 77, 768))
+        else:
+          context = np.reshape(context, (batch_size, 77, 1024))
 
         unconditional_context = base64.b64decode(contexts[1])
         unconditional_context = np.frombuffer(unconditional_context, dtype="float32")
-        unconditional_context = np.reshape(unconditional_context, (batch_size, 77, 768))    
+        if self.version == "1.4":
+          unconditional_context = np.reshape(unconditional_context, (batch_size, 77, 768))
+        else:
+          unconditional_context = np.reshape(unconditional_context, (batch_size, 77, 1024))
 
         num_steps = data.pop("num_steps", 25)
         unconditional_guidance_scale = data.pop("unconditional_guidance_scale", 7.5)
