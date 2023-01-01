@@ -9,5 +9,7 @@ RUN pip install --no-cache-dir --upgrade -r /app/requirements.txt
 # copy fastAPI app codebase
 COPY ./ /app
 
+ENV SD_VERSION=2
+
 # run the fastAPI app
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "80"]

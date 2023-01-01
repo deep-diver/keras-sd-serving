@@ -1,6 +1,6 @@
 fastapi
 uvicorn[standard]
-keras-cv==0.3.4
+keras-cv==0.4.0
 tensorflow==2.11
 tensorflow_datasets
 numpy
