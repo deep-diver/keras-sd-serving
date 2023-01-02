@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: tfs-server-diffusion-model-v2-base64
+  name: tfs-server-diffusion-model-v2-base64
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tfs-server-diffusion-model-v2-base64
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: tfs-server-diffusion-model-v2-base64
+    spec:
+      containers:
+      - image: gcr.io/gcp-ml-172005/tfs-sd-diffusion-model-v2-base64:latest
+        name: tfs-k8s-diffusion-model-v2-base64
+        imagePullPolicy: Always
+        args: ["--rest_api_timeout_in_ms=1200000"]
+        ports:
+        - containerPort: 8500
+          name: grpc
+        - containerPort: 8501
+          name: restapi
+        resources:
+          limits:
+            nvidia.com/gpu: 1

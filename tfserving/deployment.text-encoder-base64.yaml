@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: tfs-server-text-encoder-base64
+  name: tfs-server-text-encoder-base64
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tfs-server-text-encoder-base64
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: tfs-server-text-encoder-base64
+    spec:
+      containers:
+      - image: gcr.io/gcp-ml-172005/tfs-sd-text-encoder-base64:latest
+        name: tfs-k8s-text-encoder-base64
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8500
+          name: grpc
+        - containerPort: 8501
+          name: restapi
