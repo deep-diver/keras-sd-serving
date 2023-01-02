@@ -9,10 +9,10 @@ In order to deploy Stable Diffusion, we almost always need GPUs. There are three
 When creating a GKE cluster, you need to specify `accelerator` option with desired GPU type and the number of GPUs to be attatched to each node.
 
 ```
-gcloud container clusters create v100 \
+gcloud container clusters create {CLUSTER_NAME} \
   --machine-type=n1-standard-4 \
   --accelerator=type=nvidia-tesla-v100,count=1 \
-  --zone=us-central1-c \
+  --zone={CLUSTER_ZONE} \
   --num-nodes=3 \ 
   --min-nodes=3
 ```
@@ -47,4 +47,21 @@ kind: Deployment
         resources:
           limits:
             nvidia.com/gpu: 1
+```
+
+## Provision k8s resources
+
+After everything is set up, you could simply create/provision k8s resources(`deployment` and `service`). To do this, you need to connect to the cluster that you want to provision the resource. The connection CLI should be similar to the below:
+
+```
+$ gcloud container clusters get-credentials {CLUSTER_NAME} --zone {CLUSTER_ZONE} --project {PROJECT_ID}
+```
+
+After you connect to the cluster successfully, then simply run `kubectl apply` CLI like below:
+
+```
+# in the case of all-in-one case
+
+$ kubectl apply -f all-in-one/deployment.yaml
+$ kubectl apply -f all-in-one/service.yaml
 ```
