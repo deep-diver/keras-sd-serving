@@ -66,6 +66,19 @@ Also, it is worth noting that we could run `text encoder` and `decoder` parts in
 
 - **Original inpainting**: [[Colab](https://colab.research.google.com/github/deep-diver/keras-sd-serving/blob/main/hfe_two_endpoints_one_local_inpainting.ipynb)]
 
+## 4. On-Device Deployment (w/ TFLite) - WIP
+
+We have managed to convert `SavedModel`s into TFLite models, and we are hosting them as below (thanks to @farmaker47):
+- [Text Encoder TFLite Model[(https://huggingface.co/keras-sd/text-encoder-tflite) - 127MB
+- [Diffusion Model TFLite Model](https://huggingface.co/keras-sd/diffusion-model-tflite) - 1.7GB
+- [Decoder TFLite Model](https://huggingface.co/keras-sd/decoder-tflite) - 99MB
+
+These TFLite models have the same signature as the `SavedModel`s, and all the pre/post operations are included inside. All of them are converted with float16 quantization optimize process. You can find more about how to convert `SavedModel`s to `TFLite` models in this [repository](https://github.com/farmaker47/diffusion_models_tflite_conversion_and_inference).
+
+TODO
+- [ ] Implement SimpleTokenizer in JAVA and JavaScript
+- [ ] Run TFLite models on Android and Web browser 
+
 ## Timing Tests
 
 <details><summary>details</summary>
