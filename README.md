@@ -69,7 +69,7 @@ Also, it is worth noting that we could run `text encoder` and `decoder` parts in
 ## 4. On-Device Deployment (w/ TFLite) - WIP
 
 We have managed to convert `SavedModel`s into TFLite models, and we are hosting them as below (thanks to @farmaker47):
-- [Text Encoder TFLite Model[(https://huggingface.co/keras-sd/text-encoder-tflite) - 127MB
+- [Text Encoder TFLite Model](https://huggingface.co/keras-sd/text-encoder-tflite) - 127MB
 - [Diffusion Model TFLite Model](https://huggingface.co/keras-sd/diffusion-model-tflite) - 1.7GB
 - [Decoder TFLite Model](https://huggingface.co/keras-sd/decoder-tflite) - 99MB
 
