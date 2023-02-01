@@ -70,7 +70,7 @@ Also, it is worth noting that we could run `text encoder` and `decoder` parts in
 
 We have managed to convert `SavedModel`s into TFLite models, and we are hosting them as below (thanks to @farmaker47):
 - [Text Encoder TFLite Model](https://huggingface.co/keras-sd/text-encoder-tflite) - 127MB
-- [Diffusion Model TFLite Model](https://huggingface.co/keras-sd/diffusion-model-tflite) - 1.7GB
+- [Diffusion Model TFLite Model](https://huggingface.co/keras-sd/diffusion-model-tflite) - 864MB
 - [Decoder TFLite Model](https://huggingface.co/keras-sd/decoder-tflite) - 99MB
 
 These TFLite models have the same signature as the `SavedModel`s, and all the pre/post operations are included inside. All of them are converted with float16 quantization optimize process. You can find more about how to convert `SavedModel`s to `TFLite` models in this [repository](https://github.com/farmaker47/diffusion_models_tflite_conversion_and_inference).
