@@ -95,7 +95,7 @@ The figure below shows how long each scenario took from text encoding to diffusi
 
 ## 🚨 XLA support
 
-In [this notebook](https://colab.research.google.com/github/deep-diver/keras-sd-serving/blob/main/tfs_saved_models_xla.ipynb), we show how we can XLA-compile the SavedModels to achieve a speed-up of about X%. 
+In [this notebook](https://colab.research.google.com/github/deep-diver/keras-sd-serving/blob/main/tfs_saved_models_xla.ipynb), we show how we can XLA-compile the SavedModels to achieve a speed-up of about 52%. 
 
 ## Acknowledgements
 Thanks to the ML Developer Programs' team at Google for providing GCP credits.
